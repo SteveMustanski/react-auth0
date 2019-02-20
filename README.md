@@ -1,3 +1,7 @@
+# React-Auth0
+
+This project is for a course from PluralSight for securing a react app using auth0.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
