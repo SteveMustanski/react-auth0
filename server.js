@@ -39,7 +39,10 @@ app.get("/private", checkJwt, function(req, res) {
 // 3rd param is to check if the user has the read:courses scope
 app.get("/courses", checkJwt, checkScope(["read:courses"]), function(req, res) {
   res.json({
-    message: "Hello from a private API"
+    courses: [
+      { id: 1, title: "Building Apps with React and Redux" },
+      { id: 2, title: "Creating Resusable React Compoents" }
+    ]
   });
 });
 
