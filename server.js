@@ -2,6 +2,7 @@ const express = require("express");
 require("dotenv").config();
 const jwt = require("express-jwt"); // for validating JWT and set the req.user
 const jwksRsa = require("jwks-rsa"); // retriving RSA keys from JSON web key set JWKS endpoint
+const checkScope = require("express-jwt-authz"); // for JWT scopes validattion
 
 const checkJwt = jwt({
   // dynamically provide a signing key based on the kid in the header and the signing keys
@@ -30,6 +31,13 @@ app.get("/public", function(req, res) {
 });
 
 app.get("/private", checkJwt, function(req, res) {
+  res.json({
+    message: "Hello from a private API"
+  });
+});
+
+// 3rd param is to check if the user has the read:courses scope
+app.get("/courses", checkJwt, checkScope(["read:courses"]), function(req, res) {
   res.json({
     message: "Hello from a private API"
   });
