@@ -29,5 +29,11 @@ app.get("/public", function(req, res) {
   });
 });
 
+app.get("/private", checkJwt, function(req, res) {
+  res.json({
+    message: "Hello from a private API"
+  });
+});
+
 app.listen(3001);
 console.log(`The API server is listening on ${process.env.REACT_APP_API_URL}`);
