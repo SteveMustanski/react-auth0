@@ -1,6 +1,10 @@
 # React-Auth0
 
-This project is for a course from PluralSight for securing a react app using auth0.
+This project is for a course from PluralSight for securing a react app using auth0. It can be used for example purposes as
+it serves as a good example on how to secure different parts of a SPA using auth0.
+
+The project includes a website that requires a login to see profile information. The app also includes public and private
+api calls to demonstrate using values in the JWT to determine what a user can see.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
