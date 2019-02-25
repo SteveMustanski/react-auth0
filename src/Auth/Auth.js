@@ -98,4 +98,17 @@ export default class Auth {
     const grantedScopes = (_scopes || "").split(" ");
     return scopes.every(scope => grantedScopes.includes(scope));
   }
+  // function for silent authentication and token refresh
+  // when a user closes a tab or opens a new one, info in memory is lost
+  // this function checks if the user was logged in and puts valid token info in memory
+  renewToken(cb) {
+    this.auth0.checkSession({}, (err, result) => {
+      if (err) {
+        console.log(`Error: ${err.error} - ${err.error_description}.`);
+      } else {
+        this.setSession(result);
+      }
+      if (cb) cb(err, result);
+    });
+  }
 }
