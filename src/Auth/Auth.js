@@ -66,6 +66,8 @@ export default class Auth {
     // will address this later
     _accessToken = authResult.accessToken;
     _idToken = authResult.idToken;
+    // set the renewal to happen when token expires if user is on the site
+    this.scheduleTokenRenwal();
   };
 
   isAuthenticated = () => {
@@ -110,5 +112,11 @@ export default class Auth {
       }
       if (cb) cb(err, result);
     });
+  }
+
+  // renews the token if it expires while the user is on the site
+  scheduleTokenRenwal() {
+    const delay = _expiresAt - Date.now();
+    if (delay > 0) setTimeout(() => this.renewToken(), delay);
   }
 }
